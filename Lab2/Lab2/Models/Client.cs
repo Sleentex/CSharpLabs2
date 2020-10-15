@@ -1,0 +1,30 @@
+﻿using Lab2.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
+
+namespace Lab2.Models
+{
+    class Client : IReadableFromString
+    {
+        public Guid Id { get; set; } = Guid.NewGuid();
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public string MiddleName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+
+        [InverseProperty("Client")]
+        public virtual ICollection<Call> Calls { get; set; }
+
+        public void ReadFromStringArray(string[] values)
+        {
+            Name = values[1];
+            Surname = values[2];
+            MiddleName = values[3];
+            Address = values[4];
+            PhoneNumber = values[5];
+        }
+    }
+}
