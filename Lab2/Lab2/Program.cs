@@ -14,7 +14,6 @@ namespace Lab2
         private static List<Call> _newCalls = new List<Call>();
 
 
-
         private static List<IReadableFromString> ReadClientsAndCitiesFromFile(Type type, string fileName)
         {
             List<IReadableFromString> readables = new List<IReadableFromString>();
@@ -96,19 +95,20 @@ namespace Lab2
             }
         }
 
+        public static void InsertDataFromFileToDB()
+        {
+            _newClients = Enumerable.Cast<Client>(ReadClientsAndCitiesFromFile(typeof(Client), "clients.txt"));
+            _newCities = Enumerable.Cast<City>(ReadClientsAndCitiesFromFile(typeof(City), "cities.txt"));
+            ReadCallsFromFile("calls.txt");
+        }
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
-            _newClients = Enumerable.Cast<Client>(ReadClientsAndCitiesFromFile(typeof(Client), "clients.txt"));
-            _newCities = Enumerable.Cast<City>(ReadClientsAndCitiesFromFile(typeof(City), "cities.txt"));
-            ReadCallsFromFile("calls.txt");
-
+            InsertDataFromFileToDB();
             PrintTables();
             DeleteData();
-
-
-
         }
     }
 }
