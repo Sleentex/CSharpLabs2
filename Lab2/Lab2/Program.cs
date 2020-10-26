@@ -73,8 +73,9 @@ namespace Lab2
             
         }
 
-        public static void PrintTables()
+        public static void PrintUnionTable()
         {
+            Console.WriteLine("\n\n===== Union Tables =====");
             using (var context = new ApplicationContext())
             {
                 var query = context.Calls
@@ -102,12 +103,36 @@ namespace Lab2
             ReadCallsFromFile("calls.txt");
         }
 
+        private static void ShowData()
+        {
+            using (var context = new ApplicationContext())
+            {
+                PrintTable("Clients", context.Clients.ToList());
+                PrintTable("Cities", context.Cities.ToList());
+                PrintTable("Calls", context.Calls.ToList());
+            }
+            
+        }
+
+        private static void PrintTable(string table, IEnumerable<IModel> query)
+        {
+            Console.WriteLine($"\n\n===== { table } =====");
+            using (var context = new ApplicationContext())
+            {
+                foreach (var element in query)
+                {
+                    Console.WriteLine(element);
+                }
+            }
+        }
+
         static void Main(string[] args)
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             InsertDataFromFileToDB();
-            PrintTables();
+            ShowData();
+            PrintUnionTable();
             DeleteData();
         }
     }

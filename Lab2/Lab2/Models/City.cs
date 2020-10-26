@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Lab2.Models
 {
-    class City : IReadableFromString
+    class City : IReadableFromString, IModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
         public string CityName { get; set; }
@@ -21,6 +21,11 @@ namespace Lab2.Models
             CityName = values[1];
             PhoneCode = values[2];
             Tariff = int.Parse(values[3]);
+        }
+
+        public override string ToString()
+        {
+            return string.Join(" \\ ", new object[] { Id, CityName, PhoneCode, Tariff });
         }
     }
 }

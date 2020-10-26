@@ -1,11 +1,12 @@
-﻿using System;
+﻿using Lab2.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace Lab2.Models
 {
-    class Call
+    class Call : IModel
     {
         public Guid Id { get; set; } = Guid.NewGuid();
 
@@ -20,6 +21,10 @@ namespace Lab2.Models
         public int ConversationDuration { get; set; }
         public DateTime DateStart { get; set; }
 
+        public override string ToString()
+        {
+            return string.Join(" \\ ", new object[] { Id, ClientId, CityId, ConversationDuration, DateStart });
+        }
 
     }
 }
