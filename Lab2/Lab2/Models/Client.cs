@@ -20,8 +20,8 @@ namespace Lab2.Models
 
         public void ReadFromStringArray(string[] values)
         {
-            Name = values[1];
-            Surname = values[2];
+            Name = values[2];
+            Surname = values[1];
             MiddleName = values[3];
             Address = values[4];
             PhoneNumber = values[5];

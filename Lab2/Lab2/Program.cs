@@ -78,20 +78,19 @@ namespace Lab2
             Console.WriteLine("\n\n===== Union Tables =====");
             using (var context = new ApplicationContext())
             {
-                var query = context.Calls
-                    .Join(context.Clients, calls => calls.ClientId, clients => clients.Id, (o, c) => new { CityId = o.CityId, Name = c.Name, Surname = c.Surname })
-                    .Join(context.Cities, c => c.CityId, o => o.Id, (c, o) => new { City = o.CityName, Name = c.Name, Surname = c.Surname })
-                    .ToList()
-                    .GroupBy(table => new { table.Surname, table.Name })
-                    .Where(g => g.Count() >= 2);
+                var data = context.Calls
+                    .Join(context.Clients, calls => calls.ClientId, clients => clients.Id, (o, c) => new { o.CityId, ClientId = c.Id, c.Name, c.Surname })
+                    .Join(context.Cities, c => c.CityId, o => o.Id, (c, o) => new { City = o.CityName, c.ClientId, c.Name, c.Surname })
+                    .GroupBy(t => new { t.Name, t.Surname, t.ClientId })
+                    .Where(g => g.Count() >= 2)
+                    .Select(e => new { e.Key, Count = e.Count(), Cities = e.Select(e => e.City).ToList() })
+                    .ToDictionary(e => e.Key, e => e.Cities);
 
-
-                foreach (var element in query)
+                foreach (var el in data)
                 {
-                    string[] cities = element.Select(q => q.City).ToArray();
-
-                    Console.WriteLine($"{element.Key.Name}, {element.Key.Surname}, City: {String.Join(',', cities)} " +
-                        $"Cities Count: {element.Count()}");
+                    Console.WriteLine($"'{el.Key.Name} {el.Key.Surname}' " +
+                        $"City: [{string.Join(", ", el.Value)}], " +
+                        $"Cities Count: {el.Value}");
                 }
             }
         }
@@ -130,10 +129,11 @@ namespace Lab2
         {
             Console.OutputEncoding = System.Text.Encoding.UTF8;
 
+            DeleteData();
             InsertDataFromFileToDB();
             ShowData();
             PrintUnionTable();
-            DeleteData();
+            
         }
     }
 }
