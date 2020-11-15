@@ -1,0 +1,33 @@
+﻿@model Lab4.Models.City
+
+@{ ViewData["Title"] = "Деталі міст"; }
+
+
+<div>
+    <h4>Детальніше</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.PhoneCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.PhoneCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Tariff)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Tariff)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id">Редагувати</a> |
+    <a asp-action="Index">Назад до списку міст</a>
+</div>
