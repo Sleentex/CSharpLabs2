@@ -20,7 +20,6 @@ namespace Lab4.Controllers
             _context = context;
         }
 
-        [Route("/")]
         public IActionResult Index()
         {
             var data = _context.Calls

@@ -19,14 +19,12 @@ namespace Lab4.Controllers
         }
 
         // GET: Clients
-        [Route("/clients")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Clients.ToListAsync());
         }
 
         // GET: Clients/Details/5
-        [Route("/clients/details/{id?}")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -45,7 +43,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Clients/Create
-        [Route("/clients/create")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +53,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/clients/create")]
         public async Task<IActionResult> Create([Bind("Id,Name,MiddleName,Surname,Address,PhoneNumber")] Client client)
         {
             if (ModelState.IsValid)
@@ -70,7 +66,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Clients/Edit/5
-        [Route("/clients/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -91,7 +86,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/clients/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,Name,MiddleName,Surname,Address,PhoneNumber")] Client client)
         {
             if (id != client.Id)
@@ -123,7 +117,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Clients/Delete/5
-        [Route("/clients/delete/{id?}")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -144,7 +137,6 @@ namespace Lab4.Controllers
         // POST: Clients/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("/clients/delete/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var client = await _context.Clients.FindAsync(id);

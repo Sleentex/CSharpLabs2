@@ -19,7 +19,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Calls
-        [Route("/calls")]
         public async Task<IActionResult> Index()
         {
             var applicationContext = _context.Calls.Include(c => c.City).Include(c => c.Client);
@@ -27,7 +26,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Calls/Details/5
-        [Route("/calls/details/{id?}")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -48,7 +46,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Calls/Create
-        [Route("/calls/create")]
         public IActionResult Create()
         {
             ViewData["CityId"] = new SelectList(_context.Cities, "Id", "CityName");
@@ -61,7 +58,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/calls/create")]
         public async Task<IActionResult> Create([Bind("Id,ClientId,CityId,ConversationDuration,DateStart")] Call call)
         {
             if (ModelState.IsValid)
@@ -77,7 +73,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Calls/Edit/5
-        [Route("/calls/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -100,7 +95,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/calls/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,ClientId,CityId,ConversationDuration,DateStart")] Call call)
         {
             if (id != call.Id)
@@ -134,7 +128,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Calls/Delete/5
-        [Route("/calls/delete/{id?}")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -157,7 +150,6 @@ namespace Lab4.Controllers
         // POST: Calls/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("/calls/delete/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var call = await _context.Calls.FindAsync(id);

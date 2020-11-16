@@ -19,14 +19,12 @@ namespace Lab4.Controllers
         }
 
         // GET: Cities
-        [Route("/cities")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Cities.ToListAsync());
         }
 
         // GET: Cities/Details/5
-        [Route("/cities/details/{id?}")]
         public async Task<IActionResult> Details(Guid? id)
         {
             if (id == null)
@@ -45,7 +43,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Cities/Create
-        [Route("/cities/create")]
         public IActionResult Create()
         {
             return View();
@@ -56,7 +53,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/cities/create")]
         public async Task<IActionResult> Create([Bind("Id,CityName,PhoneCode,Tariff")] City city)
         {
             if (ModelState.IsValid)
@@ -70,7 +66,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Cities/Edit/5
-        [Route("/cities/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid? id)
         {
             if (id == null)
@@ -91,7 +86,6 @@ namespace Lab4.Controllers
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("/cities/edit/{id?}")]
         public async Task<IActionResult> Edit(Guid id, [Bind("Id,CityName,PhoneCode,Tariff")] City city)
         {
             if (id != city.Id)
@@ -123,7 +117,6 @@ namespace Lab4.Controllers
         }
 
         // GET: Cities/Delete/5
-        [Route("/cities/delete/{id?}")]
         public async Task<IActionResult> Delete(Guid? id)
         {
             if (id == null)
@@ -144,7 +137,6 @@ namespace Lab4.Controllers
         // POST: Cities/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Route("/cities/delete/{id?}")]
         public async Task<IActionResult> DeleteConfirmed(Guid id)
         {
             var city = await _context.Cities.FindAsync(id);
