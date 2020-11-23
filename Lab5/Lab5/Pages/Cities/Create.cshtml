@@ -1,0 +1,44 @@
+@page
+@model Lab5.Pages.Cities.CreateModel
+
+@{
+    ViewData["Title"] = "Додати запис";
+}
+
+<h1>Додати запис</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="City.CityName" class="control-label"></label>
+                <input asp-for="City.CityName" class="form-control" />
+                <span asp-validation-for="City.CityName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City.PhoneCode" class="control-label"></label>
+                <input asp-for="City.PhoneCode" class="form-control" />
+                <span asp-validation-for="City.PhoneCode" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="City.Tariff" class="control-label"></label>
+                <input asp-for="City.Tariff" class="form-control" />
+                <span asp-validation-for="City.Tariff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Створити" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="Index">Назад до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

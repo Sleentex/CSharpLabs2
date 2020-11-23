@@ -1,0 +1,43 @@
+@page
+@model Lab5.Pages.Calls.DetailsModel
+
+@{
+    ViewData["Title"] = "Деталі";
+}
+
+<h1>Деталі</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.Client)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.Client.FullName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.City.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.ConversationDuration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.ConversationDuration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.DateStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.DateStart)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Call.Id">Редагувати</a> |
+    <a asp-page="./Index">Назад до списку</a>
+</div>

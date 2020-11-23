@@ -1,0 +1,37 @@
+@page
+@model Lab5.Pages.Cities.DetailsModel
+
+@{
+    ViewData["Title"] = "Деталі";
+}
+
+<h1>Деталі</h1>
+
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City.PhoneCode)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City.PhoneCode)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.City.Tariff)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.City.Tariff)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.City.Id">Редагувати</a> |
+    <a asp-page="./Index">Назад до списку</a>
+</div>

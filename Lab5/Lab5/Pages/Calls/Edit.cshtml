@@ -1,0 +1,50 @@
+@page
+@model Lab5.Pages.Calls.EditModel
+
+@{
+    ViewData["Title"] = "Редагувати";
+}
+
+<h1>Редагувати запис</h1>
+
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Call.Id" />
+            <div class="form-group">
+                <label asp-for="Call.ClientId" class="control-label">Клієнт</label>
+                <select asp-for="Call.ClientId" class="form-control" asp-items="ViewBag.ClientId"></select>
+                <span asp-validation-for="Call.ClientId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Call.CityId" class="control-label">Місто</label>
+                <select asp-for="Call.CityId" class="form-control" asp-items="ViewBag.CityId"></select>
+                <span asp-validation-for="Call.CityId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Call.ConversationDuration" class="control-label"></label>
+                <input asp-for="Call.ConversationDuration" class="form-control" />
+                <span asp-validation-for="Call.ConversationDuration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Call.DateStart" class="control-label"></label>
+                <input asp-for="Call.DateStart" class="form-control" />
+                <span asp-validation-for="Call.DateStart" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зберегти" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="./Index">Назад до списку</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

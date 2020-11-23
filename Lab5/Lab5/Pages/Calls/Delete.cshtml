@@ -1,0 +1,46 @@
+@page
+@model Lab5.Pages.Calls.DeleteModel
+
+@{
+    ViewData["Title"] = "Видалити запис";
+}
+
+<h1>Видалення запису</h1>
+
+<h3>Ви впевнені, що хочете видалити цей запис?</h3>
+<div>
+    
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.Client)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.Client.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.City)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.City.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.ConversationDuration)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.ConversationDuration)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Call.DateStart)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Call.DateStart)
+        </dd>
+    </dl>
+    
+    <form method="post">
+        <input type="hidden" asp-for="Call.Id" />
+        <input type="submit" value="Видалити" class="btn btn-danger" /> |
+        <a asp-page="./Index">Назад до списку</a>
+    </form>
+</div>

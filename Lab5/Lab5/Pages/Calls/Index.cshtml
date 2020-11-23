@@ -1,0 +1,54 @@
+@page
+@model Lab5.Pages.Calls.IndexModel
+
+@{
+    ViewData["Title"] = "Список дзвінків";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create">Створити новий запис</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Call[0].Client)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Call[0].City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Call[0].ConversationDuration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Call[0].DateStart)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Call) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Client.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.City.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ConversationDuration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStart)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Редагувати</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Деталі</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

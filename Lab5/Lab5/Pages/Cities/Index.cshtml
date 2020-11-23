@@ -1,0 +1,48 @@
+@page
+@model Lab5.Pages.Cities.IndexModel
+
+@{
+    ViewData["Title"] = "Список міст";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create">Створити новий запис</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.City[0].CityName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City[0].PhoneCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.City[0].Tariff)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.City) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhoneCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tariff)
+            </td>
+            <td>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Редагувати</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Деталі</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Видалити</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
